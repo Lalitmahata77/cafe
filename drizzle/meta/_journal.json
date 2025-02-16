@@ -22,6 +22,13 @@
       "when": 1739442742483,
       "tag": "0002_famous_ultimo",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1739730463030,
+      "tag": "0003_perpetual_loa",
+      "breakpoints": true
     }
   ]
 }
