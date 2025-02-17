@@ -33,3 +33,20 @@ export const wareHouses = pgTable("wareHouses",{
     createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
     
 })
+
+export const orders = pgTable("orders",{
+    id: serial("id").primaryKey()
+})
+
+
+
+
+export const deliveryPersons = pgTable("delivery_persons",{
+    id: serial("id").primaryKey(),
+    name: varchar("name",{length:100}).notNull(),
+    phone: varchar("phone",{length:14}).notNull(),
+    wareHouseId: integer("wareHouse_id").references(()=>wareHouses.id,{onDelete:"cascade"}),
+    orderId: integer("order_id").references(()=>orders.id,{onDelete:"set null"}),
+    updatedAt: timestamp('updated_at').default(sql`CURRENT_TIMESTAMP`),
+    createdAt: timestamp('created_at').default(sql`CURRENT_TIMESTAMP`),
+})

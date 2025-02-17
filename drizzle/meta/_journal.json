@@ -29,6 +29,13 @@
       "when": 1739730463030,
       "tag": "0003_perpetual_loa",
       "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1739816923481,
+      "tag": "0004_odd_agent_brand",
+      "breakpoints": true
     }
   ]
 }
