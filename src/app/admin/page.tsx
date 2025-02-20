@@ -1,9 +1,10 @@
+import { Button } from '@/components/ui/button'
 import React from 'react'
 
-const page = () => {
+const AdminPage = () => {
   return (
-    <div>page</div>
+    <Button>AdminPage</Button>
   )
 }
 
-export default page
+export default AdminPage
