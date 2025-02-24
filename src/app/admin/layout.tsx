@@ -1,18 +1,17 @@
 import Link from 'next/link';
 import {
+    Blocks,
     CircleUser,
-    Home,
-    LineChart,
+    HomeIcon,
+    Layers,
     Menu,
-    Package,
-    Package2,
     ShoppingCart,
     Users,
+    Warehouse,
 } from 'lucide-react';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -25,10 +24,17 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Sidebar from './_components/sidebar';
 
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
+    const navItems = [
+        { label: 'Dashboard', href: '/admin', icon: HomeIcon },
+        { label: 'Products', href: '/admin/products', icon: Layers },
+        { label: 'Warehouses', href: '/admin/warehouses', icon: Warehouse },
+        { label: 'Deliver Persons', href: '/admin/delivery-persons', icon: Users },
+        { label: 'Orders', href: '/admin/orders', icon: ShoppingCart },
+        { label: 'Inventories', href: '/admin/inventories', icon: Blocks },
+    ];
     return (
         <div className="grid min-h-screen w-full md:grid-cols-[220px_1fr] lg:grid-cols-[280px_1fr]">
             <Sidebar />
-            {/* todo: change all links for mobile screens */}
             <div className="flex flex-col">
                 <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-4 lg:h-[60px] lg:px-6">
                     <Sheet>
@@ -40,62 +46,19 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                         </SheetTrigger>
                         <SheetContent side="left" className="flex flex-col">
                             <nav className="grid gap-2 text-lg font-medium">
+                                {navItems.map((item) => {
+                            return (
                                 <Link
-                                    href="#"
-                                    className="flex items-center gap-2 text-lg font-semibold">
-                                    <Package2 className="h-6 w-6" />
-                                    <span className="sr-only">Acme Inc</span>
+                                key={item.label}
+                                    href={item.href}
+                                    className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary">
+                                    <item.icon className="h-4 w-4" />
+                                    {item.label}
                                 </Link>
-                                <Link
-                                    href="#"
-                                    className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
-                                    <Home className="h-5 w-5" />
-                                    Dashboard
-                                </Link>
-                                <Link
-                                    href="#"
-                                    className="mx-[-0.65rem] flex items-center gap-4 rounded-xl bg-muted px-3 py-2 text-foreground hover:text-foreground">
-                                    <ShoppingCart className="h-5 w-5" />
-                                    Orders
-                                    <Badge className="ml-auto flex h-6 w-6 shrink-0 items-center justify-center rounded-full">
-                                        6
-                                    </Badge>
-                                </Link>
-                                <Link
-                                    href="#"
-                                    className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
-                                    <Package className="h-5 w-5" />
-                                    Products
-                                </Link>
-                                <Link
-                                    href="#"
-                                    className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
-                                    <Users className="h-5 w-5" />
-                                    Customers
-                                </Link>
-                                <Link
-                                    href="#"
-                                    className="mx-[-0.65rem] flex items-center gap-4 rounded-xl px-3 py-2 text-muted-foreground hover:text-foreground">
-                                    <LineChart className="h-5 w-5" />
-                                    Analytics
-                                </Link>
+                            );
+                        })}
                             </nav>
-                            <div className="mt-auto">
-                                <Card>
-                                    <CardHeader>
-                                        <CardTitle>Upgrade to Pro</CardTitle>
-                                        <CardDescription>
-                                            Unlock all features and get unlimited access to our
-                                            support team.
-                                        </CardDescription>
-                                    </CardHeader>
-                                    <CardContent>
-                                        <Button size="sm" className="w-full">
-                                            Upgrade
-                                        </Button>
-                                    </CardContent>
-                                </Card>
-                            </div>
+                         
                         </SheetContent>
                     </Sheet>
                     <div className="w-full flex-1">
