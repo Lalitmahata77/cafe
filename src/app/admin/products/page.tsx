@@ -6,6 +6,7 @@ import { columns } from './columns'
 import { useQuery } from '@tanstack/react-query'
 import { getAllProducts } from '@/http/api'
 import { Product } from '@/types'
+import ProductSheet from './product-sheet'
 
 const ProductsPage = () => {
     const {data: products} = useQuery<Product[]>({
@@ -18,6 +19,7 @@ const ProductsPage = () => {
     <div className=' flex justify-between items-center'>
         <h3 className=' text-2xl font-bold tracking-tight'>Products</h3>
         <Button size={`sm`}>Add Product</Button>
+        <ProductSheet/>
     </div>
     <DataTable columns={columns} data={products || []}/>
     </>
