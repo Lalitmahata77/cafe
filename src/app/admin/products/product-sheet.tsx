@@ -10,16 +10,21 @@ import {
 import CreateProductForm, { FormValues } from './create-product-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { createProduct } from '@/http/api'
-  
+import { useNewProductStore } from '@/store/product/product-store'
+import { toast } from "sonner"
+
 
 const ProductSheet = () => {
+
+  const {isOpen,onClose} = useNewProductStore()
   const queryClient = useQueryClient();
-  const {mutate} = useMutation({
+  const {mutate,isPending} = useMutation({
     mutationKey: ['create-product'],
     mutationFn: (data: FormData)=>createProduct(data),
     onSuccess:()=>{
       queryClient.invalidateQueries({ queryKey: ['products'] });
-      alert('product created');
+      toast("Product has been created.")
+      onClose()
     }
   })
   const onSubmit = (values:FormValues)=>{
@@ -34,7 +39,7 @@ const ProductSheet = () => {
     
   }
   return (
-    <Sheet open={true}>
+    <Sheet open={isOpen} onOpenChange={onClose}>
   {/* <SheetTrigger>Open</SheetTrigger> */}
   <SheetContent className=' space-y-3'>
     <SheetHeader>
@@ -43,7 +48,7 @@ const ProductSheet = () => {
        create a new product
       </SheetDescription>
     </SheetHeader>
-    <CreateProductForm onSubmit={onSubmit}/>
+    <CreateProductForm onSubmit={onSubmit} disabled={isPending}/>
   </SheetContent>
 </Sheet>
 

@@ -22,7 +22,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import Sidebar from './_components/sidebar';
-
+import { Toaster } from "@/components/ui/sonner"
 const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
     const navItems = [
         { label: 'Dashboard', href: '/admin', icon: HomeIcon },
@@ -82,6 +82,7 @@ const DashboardLayout = ({ children }: { children: React.ReactNode }) => {
                     </DropdownMenu>
                 </header>
                 <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">{children}</main>
+                <Toaster />
             </div>
         </div>
     );
