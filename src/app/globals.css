@@ -61,6 +61,9 @@ body {
     --chart-5: 340 75% 55%;
   }
 }
+.custom-height {
+  height: calc(100vh - 96px);
+}
 
 @layer base {
   * {
