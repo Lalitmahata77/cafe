@@ -1,5 +1,5 @@
 import { db } from "@/lib/db/db"
-import { deliveryPersons, wareHouses } from "@/lib/db/schema"
+import { deliveryPersons, warehouses } from "@/lib/db/schema"
 import { deliveryPersonSchema } from "@/lib/validator/deliveryPersonSchema"
 import { desc, eq } from "drizzle-orm"
 
@@ -32,10 +32,10 @@ export async function GET(){
             id:deliveryPersons.id,
             name: deliveryPersons.name,
             phone: deliveryPersons.phone,
-            wareHouse: wareHouses.name
+            wareHouse: warehouses.name
         }
        ).from(deliveryPersons)
-       .leftJoin(wareHouses,eq(deliveryPersons.wareHouseId,wareHouses.id))
+       .leftJoin(warehouses,eq(deliveryPersons.warehouseId,warehouses.id))
        .orderBy(desc(deliveryPersons.id))
         return Response.json(allDeliveryPersons)
     } catch (error) {

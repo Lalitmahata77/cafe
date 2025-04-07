@@ -1,5 +1,5 @@
 import { db } from "@/lib/db/db";
-import { wareHouses } from "@/lib/db/schema";
+import { warehouses } from "@/lib/db/schema";
 import { wareHouseSchema } from "@/lib/validator/wareHouseSchema";
 
 export async function POST(request:Request){
@@ -14,7 +14,7 @@ try {
 }
 
 try {
-    const WareHouse = await db.insert(wareHouses).values(validatedData)
+    const WareHouse = await db.insert(warehouses).values(validatedData)
     return Response.json(WareHouse)
     
 } catch (error) {
@@ -27,7 +27,7 @@ try {
 
 export async function GET(){
     try {
-        const allWareHouse = await db.select().from(wareHouses)
+        const allWareHouse = await db.select().from(warehouses)
         return Response.json(allWareHouse)
         
     } catch (error) {

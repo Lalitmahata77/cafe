@@ -1,8 +1,7 @@
-import { z } from "zod";
+import { z } from 'zod';
 
-export const inventoriesSchema = z.object({
-    sku: z.string({message: "sku should be a string"}),
-    wareHouseId: z.number({message: "wareHouseId should be number"}),
-    // orderId: z.number({message: "orderId should be number"}),
-    productId: z.number({message: "ProductId should be number"})
-})
+export const inventorySchema = z.object({
+    sku: z.string({ message: 'SKU should be a string' }).length(8, 'SKU should be 8 chars long'),
+    warehouseId: z.number({ message: 'Warehouse id should be a number' }),
+    productId: z.number({ message: 'Product id should be a number' }),
+});
